@@ -2,7 +2,7 @@ import requests
 # Fetch protein data from UniProt
 
 
-def fetch_protein_data(protein_name):
+def get_protein_data(protein_name):
     url = f"https://www.uniprot.org/uniprot/{protein_name}.fasta"
     response = requests.get(url)
 
