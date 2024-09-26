@@ -8,6 +8,6 @@ def analyze_protein(sequence):
         'aromaticity': analysis.aromaticity(),
         'isoelectric_point': analysis.isoelectric_point(),
         'gravy': analysis.gravy(),
-        'amino_acids_percent()': {aa: percent * 100 for aa, percent in analysis.amino_acids_percent().items()}
+        'amino_acids_percent': {aa: percent * 100 for aa, percent in analysis.amino_acids_percent.items()}
     }
     return properties

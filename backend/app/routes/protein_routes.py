@@ -3,6 +3,7 @@ from ..models.protein import Protein
 from ..db import db
 from ..services.protein_analyzer import analyze_protein
 from ..services.protein_converter import protein_to_dna, protein_to_rna
+from ..services.fetch_protein_data import fetch_protein_data as fpd
 from app.models import protein
 
 protein_blueprint = Blueprint('protein', __name__)
@@ -29,7 +30,8 @@ def analyze_protein_route():
 def convert_protein_to_rna():
     data = request.get_json()
     sequence = data['sequence']
-    rna_sequence = protein_to_rna(sequence)
+    stop = data.get('stop', False)
+    rna_sequence = protein_to_rna(sequence, stop)
     return jsonify({'rna_sequence': rna_sequence})
 
 
@@ -37,5 +39,14 @@ def convert_protein_to_rna():
 def convert_protein_to_dna():
     data = request.get_json()
     sequence = data['sequence']
-    dna_sequence = protein_to_dna(sequence)
+    stop = data.get('stop', False)
+    dna_sequence = protein_to_dna(sequence, stop)
     return jsonify({'dna_sequence': dna_sequence})
+
+
+@protein_blueprint.route('/protein/fetch', methods=['POST'])
+def fetch_protein_data():
+    data = request.get_json()
+    protein_name = data['name']
+    protein_data = fpd(protein_name)
+    return jsonify(protein_data)
