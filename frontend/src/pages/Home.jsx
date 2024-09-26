@@ -22,16 +22,10 @@ const Home = () => {
           Fetch Protein
         </a>
         <a
-          href="/to_rna"
+          href="/sequence_converter"
           className="p-4 bg-green-500 text-white rounded shadow hover:bg-green-600 transition"
         >
-          Convert to RNA
-        </a>
-        <a
-          href="/to_dna"
-          className="p-4 bg-yellow-500 text-white rounded shadow hover:bg-yellow-600 transition"
-        >
-          Convert to DNA
+          Sequence Converter
         </a>
       </div>
     </div>

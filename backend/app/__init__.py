@@ -2,6 +2,7 @@ from flask import Flask
 from .db import db
 from flask_migrate import Migrate
 from .routes.protein_routes import protein_blueprint
+from .routes.conversion_routes import protein_conversion_blueprint
 from .config import Config
 from flask_cors import CORS
 
@@ -17,5 +18,6 @@ def create_app():
     migrate = Migrate(app, db)
 
     app.register_blueprint(protein_blueprint)
+    app.register_blueprint(protein_conversion_blueprint)
 
     return app

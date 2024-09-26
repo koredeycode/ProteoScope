@@ -3,7 +3,7 @@ from Bio.SeqRecord import SeqRecord
 from Bio.Data import CodonTable
 
 # Function to convert protein to possible RNA sequences (reverse translation)
-def protein_to_rna(protein_sequence, to_stop=False):
+def protein_to_rna(protein_sequence, to_stop=False, protein_stop_codon="*", rna_stop_codon="UAA"):
     try:
         protein_seq = Seq(protein_sequence)
         
@@ -13,8 +13,8 @@ def protein_to_rna(protein_sequence, to_stop=False):
         # Map each amino acid in the protein sequence to one possible codon (RNA)
         rna_seq = ""
         for aa in protein_seq:
-            if aa == "*":  # Stop codon
-                rna_seq += "UAA"  # Use UAA as default stop codon
+            if aa == protein_stop_codon:  # Stop codon
+                rna_seq += rna_stop_codon  # Use UAA as default stop codon
             else:
                 # Find the first codon that codes for this amino acid
                 for codon, amino_acid in codon_table.forward_table.items():
@@ -46,10 +46,10 @@ def dna_to_rna(dna_sequence):
         return str(e)
 
 # Function to reverse translate a protein to DNA
-def protein_to_dna(protein_sequence):
+def protein_to_dna(protein_sequence, to_stop, protein_stop_codon, rna_stop_codon):
     try:
         # Step 1: Reverse translate protein to RNA
-        rna_seq = protein_to_rna(protein_sequence)
+        rna_seq = protein_to_rna(protein_sequence, to_stop, protein_stop_codon, rna_stop_codon)
         
         # Step 2: Convert RNA to DNA
         dna_seq = rna_to_dna(rna_seq)
