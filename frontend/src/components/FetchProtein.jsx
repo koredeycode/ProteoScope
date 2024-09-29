@@ -17,7 +17,7 @@ const FetchProtein = () => {
         className="border w-full p-2 mb-4"
         placeholder="Enter protein name..."
         value={proteinName}
-        onChange={(e) => setProteinName(e.target.value)}
+        onChange={(e) => setProteinName(e.target.value.toLocaleUpperCase())}
       />
       <button
         className="bg-blue-500 text-white py-2 px-4 rounded"
