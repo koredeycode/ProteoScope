@@ -14,7 +14,7 @@ const AnalyzeProtein = () => {
   };
 
   return (
-    <div className="p-4">
+    <>
       <h2 className="text-xl font-bold mb-4">Analyze Protein</h2>
       <textarea
         className="border w-full p-2 mb-4"
@@ -25,6 +25,7 @@ const AnalyzeProtein = () => {
       <button
         className="bg-blue-500 text-white py-2 px-4 rounded"
         onClick={handleAnalyze}
+        type="submit"
       >
         Analyze
       </button>
@@ -46,7 +47,7 @@ const AnalyzeProtein = () => {
           <p>Loading data...</p>
         )}
       </div>
-    </div>
+    </>
   );
 };
 

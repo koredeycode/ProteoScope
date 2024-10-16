@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 const MainLayout = ({ children }) => {
   return (
     <div className="min-h-screen min-w-max bg-gray-100">
-      <nav className="bg-blue-500 p-4">
-        <h1 className="text-white text-2xl">ProteoScope</h1>
-        <ul className="flex space-x-4 mt-4">
+      <nav className="bg-blue-500 p-4 mx-auto w-1/2 shadow-md rounded-lg">
+        <div className="w-full flex justify-center">
+          <h1 className="text-white text-2xl">ProteoScope</h1>
+        </div>
+        <ul className="flex justify-evenly space-x-4 mt-4">
           <li>
             <Link to="/" className="text-white">
               Home
@@ -29,7 +31,7 @@ const MainLayout = ({ children }) => {
           </li>
         </ul>
       </nav>
-      <div>
+      <div className="w-1/2 bg-white p-4 mx-auto mt-4 shadow-md rounded-lg">
         <main className="p-4">{children}</main>
       </div>
     </div>
