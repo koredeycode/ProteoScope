@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { analyzeProtein } from '../api';
+import PieChart from './PieChart';
 
 const AnalyzeProtein = () => {
   const [sequence, setSequence] = useState('');
   const [result, setResult] = useState(null);
+  const [aminoAcidData, setAminoAcidData] = useState(null);
 
   const handleAnalyze = async () => {
     const response = await analyzeProtein(sequence);
     setResult(response);
+    setAminoAcidData(response.amino_acids_percent);
   };
 
   return (
@@ -34,6 +37,15 @@ const AnalyzeProtein = () => {
           <p>Gravy: {result.gravy}</p>
         </div>
       )}
+      <div>
+        <h1>Protein Amino Acid composition</h1>
+
+        {aminoAcidData ? (
+          <PieChart aminoAcidData={aminoAcidData} />
+        ) : (
+          <p>Loading data...</p>
+        )}
+      </div>
     </div>
   );
 };
